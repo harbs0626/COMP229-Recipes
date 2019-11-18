@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="COMP229_Assignment_01" />
+    <meta name="author" content="HarbinRamo_301046044_Sec006" />
+
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/css/all_fonts.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- ** Page Header and Menu Links ** -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-cheerful fixed-top bg-dark">
+            <a class="navbar-brand disabled" href="#">
+                私のレシピ
+            </a>
+            <button class="navbar-toggler" type="button"
+                    data-toggle="collapse" data-target="#navbarCollapse">
+                <i class="fa fa-caret-down" style="color:#ffffff"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="AddRecipe">Add Recipe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="RecipeList">Recipe List</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ** Body ** -->
+    <main role="main">
+        <div class="album py-5">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+    
+    <!-- ** Footer ** -->
+    <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2019-2019 HRamo - Centennial College - COMP229_006.</p>
+    </footer>
+
+    <!-- ** Javascripts ** -->
+    <script src="~/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="~/js/jquery.min.js"><\/script>')</script>
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

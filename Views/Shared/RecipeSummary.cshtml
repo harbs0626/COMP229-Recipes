@@ -1,0 +1,11 @@
+﻿@model Recipe
+
+<div class="row">
+    <div class="col-md-6">
+        @Html.ActionLink("Recipe", "ViewRecipe", "Home", new { id = Model.RecipeId }, null)
+    </div>
+    <div class="col-md-6">
+        @Html.ActionLink("Review", "ReviewRecipe", "Home", new { id = Model.RecipeId }, null)
+    </div>
+</div>
+
