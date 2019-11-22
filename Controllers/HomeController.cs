@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Recipes.Models;
 using Recipes.Models.ViewModels;
@@ -53,16 +55,57 @@ namespace Recipes.Controllers
             });
         }
 
-        [HttpGet]
-        public ViewResult AddRecipe()
+        public ViewResult EditRecipe(int recipeId)
         {
-            @ViewBag.Title = "Add Recipe";
-            @ViewBag.LastId = this.recipeRepository.MyRecipes.Count();
-            return View();
+            if (recipeId == 0)
+            {
+                @ViewBag.Title = "New Recipe";
+                return View("EditRecipe", new Recipe());
+            }
+            else
+            {
+                @ViewBag.Title = "Edit Recipe";
+                return View(this.recipeRepository.MyRecipes
+                    .FirstOrDefault(r => r.RecipeId == recipeId));
+            }
         }
 
         [HttpPost]
-        public ViewResult AddRecipe(Recipe recipe)
+        public IActionResult EditRecipe(Recipe recipe)
+        {
+            if (ModelState.IsValid)
+            {
+                this.recipeRepository.SaveRecipe(recipe);
+                TempData["returnMessage"] = $"{recipe.Name} has been saved!";
+                return RedirectToAction("EditRecipe");
+            }
+            else
+            {
+                return View(recipe);
+            }
+        }
+
+        [Authorize]
+        public ViewResult Create()
+        {
+            @ViewBag.Title = "New Recipe";
+            return View("EditRecipe", new Recipe());
+        }
+
+        [HttpPost]
+        public IActionResult DeleteRecipe(int recipeId)
+        {
+            Recipe deletedRecipe = this.recipeRepository.DeleteRecipe(recipeId);
+
+            if (deletedRecipe != null)
+            {
+                TempData["returnMessage"] = $"{deletedRecipe.Name} was deleted!";
+            }
+
+            return RedirectToAction("RecipeList");
+        }
+
+        /*public ViewResult AddRecipe(Recipe recipe)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +117,7 @@ namespace Recipes.Controllers
                 @ViewBag.Title = "Add Recipe";
                 return View();
             }
-        }
+        }*/
 
         public ViewResult ViewRecipe(int id)
         {

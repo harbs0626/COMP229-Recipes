@@ -10,45 +10,42 @@
         <h1>Recipe List</h1>
         <hr />
         @{
-            int count = Model.MyRecipes.Count<Recipe>();
-            if (count == 0)
+            if (TempData["returnMessage"] != null)
             {
-                <div class="alert alert-warning" style="text-align:center">
-                    <i class="fa fa-exclamation-triangle"></i>&nbsp;No record(s) found.  Please add first a recipe.
+                <div class="alert alert-success" style="text-align:center">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    @TempData["returnMessage"]
                 </div>
             }
             else
             {
-                <div class="alert alert-success" style="text-align:center">
-                    <i class="fa fa-exclamation-circle"></i>&nbsp;Recipe list has been successfully loaded.
-                </div>
+                int count = Model.MyRecipes.Count<Recipe>();
+                if (count == 0)
+                {
+                    <div class="alert alert-warning" style="text-align:center">
+                        <i class="fa fa-exclamation-triangle"></i>&nbsp;No record(s) found.  Please add first a recipe.
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-success" style="text-align:center">
+                        <i class="fa fa-exclamation-circle"></i>&nbsp;Recipe list has been successfully loaded.
+                    </div>
+                }
             }
         }
     </div>
-    @*<div class="col-md-12">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
-    </div>*@
     <div class="col-md-12">
-        <div class="justify-content-center">
-            <div page-model="@Model.PagingInfo"
-                 page-action="List"
-                 page-classes-enabled="true"
-                 page-class="btn"
-                 page-class-normal="btn-outline-secondary"
-                 page-class-selected="btn-primary"></div>
-        </div>
+        <nav style="margin-bottom:20px">
+            <div class="pagination justify-content-center">
+                <div page-model="@Model.PagingInfo"
+                     page-action="RecipeList"
+                     page-classes-enabled="true"
+                     page-class="btn"
+                     page-class-normal="btn-outline-secondary"
+                     page-class-selected="btn-primary"></div>
+            </div>
+        </nav>
     </div>
 </div>
 <div class="row">
@@ -60,7 +57,7 @@
                 <div class="card mb-3 shadow-sm">
                     @{
                         foodId++;
-                        var imageFile = "../images/recipe" + foodId + ".jpg";
+                        var imageFile = "~/uploads/" + rf.RecipeImage;
                     }
                     <img class="bd-placeholder-img card-img-top" alt="" style="width:100%" height="200" src="@imageFile" />
                     <div class="card-body">

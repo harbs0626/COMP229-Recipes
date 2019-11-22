@@ -33,10 +33,10 @@ namespace Recipes.Models
         public string Suggestions { get; set; }
 
         [Required(ErrorMessage = "Please enter number of servings.")]
-        public string NumberOfServings { get; set; }
+        public int NumberOfServings { get; set; }
 
         [Required(ErrorMessage = "Please enter number of calories.")]
-        public string NumberOfCalories { get; set; }
+        public int NumberOfCalories { get; set; }
 
         public string Review { get; set; }
 

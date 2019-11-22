@@ -2,142 +2,151 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1>Add Recipe</h1>
+        <h1>@ViewBag.Title</h1>
         <hr />
-        <div class="alert alert-info" style="text-align:center">
-            <i class="fa fa-info-circle"></i>&nbsp;Please fill-up the formFields below.
-        </div>
+        @{
+            if (TempData["returnMessage"] != null)
+            {
+                <div class="alert alert-success" style="text-align:center">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    @TempData["returnMessage"]
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-info" style="text-align:center">
+                    <i class="fa fa-info-circle"></i>&nbsp;
+                    Please fill-up form below
+                </div>
+            }
+        }
     </div>
 </div>
-<div class="row">
-    <div class="col-md-4 order-md-2 mb-4">
-        <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class="text-muted">Image</span>
-        </h4>
-        <div class="form-control-file">
-            <input type="file" placeholder="-----" style="margin-bottom:5px">
+
+<form class="needs-validation row" asp-action="EditRecipe" method="post">
+    <input type="hidden" asp-for="RecipeId" />
+
+    <div class="col-md-6 order-md-1">
+        <div class="mb-3">
+            <label asp-for="RecipeImage">Image</label>
+            <div class="input-group">
+                <div class="form-control-file">
+                    <input type="file" asp-for="RecipeImage" placeholder="-----">
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Name">Name</label>
+            <div><span asp-validation-for="Name" class="text-danger"></span></div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
+                </div>
+                <input type="text" class="form-control" asp-for="Name" placeholder="-----">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Ingredients">Ingredients</label>
+            <div><span asp-validation-for="Ingredients" class="text-danger"></span></div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
+                </div>
+                <textarea type="text" class="form-control" asp-for="Ingredients" placeholder="-----" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Directions">Directions</label>
+            <div><span asp-validation-for="Directions" class="text-danger"></span></div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
+                </div>
+                <textarea type="text" class="form-control" asp-for="Directions" placeholder="-----" rows="3"></textarea>
+            </div>
         </div>
     </div>
-    <div class="col-md-8 order-md-1">
-        <form class="needs-validation" asp-action="AddRecipe" method="post">
-            <div asp-validation-summary="All" style="color:red"></div>
-            <div class="mb-3">
-                <label asp-for="RecipeId">Recipe Id</label>
+    <div class="col-md-6 order-md-2">
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <label asp-for="PreparationTime">Prep Time</label>
+                <div><span asp-validation-for="PreparationTime" class="text-danger"></span></div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
                     </div>
-                    @{
-                        int getLastId = @ViewBag.LastId;
-                        getLastId++;
-                    }
-                    <input type="text" class="form-control" asp-for="RecipeId" placeholder="-----" readonly="readonly"
-                           value="@getLastId">
+                    <input type="text" class="form-control" asp-for="PreparationTime" placeholder="-----">
                 </div>
             </div>
-
-            <div class="mb-3">
-                <label asp-for="Name">Name</label>
+            <div class="col-md-4 mb-3">
+                <label asp-for="CookingTime">Cooking Time</label>
+                <div><span asp-validation-for="CookingTime" class="text-danger"></span></div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
                     </div>
-                    <input type="text" class="form-control" asp-for="Name" placeholder="-----">
+                    <input type="text" class="form-control" asp-for="CookingTime" placeholder="-----">
                 </div>
             </div>
-
-            <div class="mb-3">
-                <label asp-for="Ingredients">Ingredients</label>
+            <div class="col-md-4 mb-3">
+                <label asp-for="ReadyIn">Ready In</label>
+                <div><span asp-validation-for="ReadyIn" class="text-danger"></span></div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
                     </div>
-                    <textarea type="text" class="form-control" asp-for="Ingredients" placeholder="-----" rows="10"></textarea>
+                    <input type="text" class="form-control" asp-for="ReadyIn" placeholder="-----">
                 </div>
             </div>
+        </div>
 
-            <div class="mb-3">
-                <label asp-for="Directions">Directions</label>
+        <div class="mb-3">
+            <label asp-for="Suggestions">Suggestions</label>
+            <div><span asp-validation-for="Suggestions" class="text-danger"></span></div>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
+                </div>
+                <textarea type="text" class="form-control" asp-for="Suggestions" placeholder="-----" rows="3"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label asp-for="NumberOfServings">Number of Servings</label>
+                <div><span asp-validation-for="NumberOfServings" class="text-danger"></span></div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
                     </div>
-                    <textarea type="text" class="form-control" asp-for="Directions" placeholder="-----" rows="5"></textarea>
+                    <input type="number" class="form-control" asp-for="NumberOfServings" placeholder="0">
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-4 mb-3">
-                    <label asp-for="PreparationTime">Prep Time</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
-                        </div>
-                        <input type="text" class="form-control" asp-for="PreparationTime" placeholder="-----">
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label asp-for="CookingTime">Cooking Time</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
-                        </div>
-                        <input type="text" class="form-control" asp-for="CookingTime" placeholder="-----">
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <label asp-for="ReadyIn">Ready In</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
-                        </div>
-                        <input type="text" class="form-control" asp-for="ReadyIn" placeholder="-----">
-                    </div>
-                </div>
-            </div>
-
-            <div class="mb-3">
-                <label asp-for="Suggestions">Suggestions</label>
+            <div class="col-md-6 mb-3">
+                <label asp-for="NumberOfCalories">Number of Calories</label>
+                <div><span asp-validation-for="NumberOfCalories" class="text-danger"></span></div>
                 <div class="input-group">
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
                     </div>
-                    <textarea type="text" class="form-control" asp-for="Suggestions" placeholder="-----" rows="3"></textarea>
+                    <input type="text" class="form-control" asp-for="NumberOfCalories" placeholder="0">
                 </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label asp-for="NumberOfServings">Number of Servings</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
-                        </div>
-                        <input type="text" class="form-control" asp-for="NumberOfServings" placeholder="-----">
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label asp-for="NumberOfCalories">Number of Calories</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
-                        </div>
-                        <input type="text" class="form-control" asp-for="NumberOfCalories" placeholder="-----">
-                    </div>
-                </div>
+        <hr class="mb-4" style="margin-top:35px">
+        <div class="row">
+            <div class="col-md-6" style="margin-bottom:10px">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" btn="submit">Save Recipe</button>
             </div>
-
-            <hr class="mb-4">
-            <div class="row">
-                <div class="col-md-6" style="margin-bottom:10px">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit" btn="submit">Save Recipe</button>
-                </div>
-                <div class="col-md-6" style="margin-bottom:10px;">
-                    <a asp-action="Index" class="btn btn-secondary btn-lg btn-block">
-                        <span style="color:#ffffff">Cancel</span>
-                    </a>
-                </div>
+            <div class="col-md-6" style="margin-bottom:10px;">
+                <a asp-action="RecipeList" class="btn btn-secondary btn-lg btn-block">
+                    <span style="color:#ffffff">Cancel</span>
+                </a>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+</form>

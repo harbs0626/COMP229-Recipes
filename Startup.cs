@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Recipes.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Recipes
 {
@@ -22,12 +23,23 @@ namespace Recipes
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-                  Configuration["Data:RecipeForm:ConnectionString"]));
+            services.AddDbContext<ApplicationDbContext>(
+                options => options.UseSqlServer(Configuration["Data:Recipes:ConnectionString"]));
             services.AddTransient<IRecipeRepository, EFRecipeRepository>();
 
             //services.AddTransient<IRecipeRepository, FakeRecipeRepository>();
             services.AddMvc();
+
+            services.AddMemoryCache();
+            services.AddSession();
+
+            services.AddDbContext<AppIdentityDbContext>(
+                options => options.UseSqlServer(Configuration["Data:RecipesIdentity:ConnectionString"]
+                )
+            );
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,21 +52,23 @@ namespace Recipes
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseAuthentication();
+            //app.UseMvcWithDefaultRoute();
 
-            /*app.UseMvc(routes =>
+            app.UseMvc(routes =>
             {
                 routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action}",
+                    name: null,
+                    template: "",
                     defaults: new { 
-                        controller = "Home",
-                        action = "Index" });
-                
+                        controller = "Home", 
+                        action = "Index", 
+                        productPage = 1 });
+
                 routes.MapRoute(
-                    name: "",
-                    template: "{controller=Home}/{action=ViewRecipe}/{id?}");
-            });*/
+                    name: null,
+                    template: "{controller}/{action}/{id?}");
+            });
 
             SeedData.EnsurePopulated(app);
         }

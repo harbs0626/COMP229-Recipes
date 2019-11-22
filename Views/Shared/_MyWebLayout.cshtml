@@ -28,10 +28,19 @@
                         <a class="nav-link" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="AddRecipe">Add Recipe</a>
+                        <a class="nav-link" asp-action="RecipeList">Recipe List</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-action="RecipeList">Recipe List</a>
+                        <a class="nav-link" asp-action="Create">Add Recipe</a>
+                    </li>
+                    <li class="nav-item">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <a class="nav-link"
+                               asp-action="Logout" asp-controller="Account">
+                                Log Out
+                            </a>
+                        }
                     </li>
                 </ul>
             </div>

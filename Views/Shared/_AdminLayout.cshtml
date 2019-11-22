@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+
+    <script src="~/lib/js/jquery.min.js"></script>
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <title>@ViewBag.Title</title>
+
+</head>
+<body>
+    <!-- ** Page Header and Menu Links ** -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-cheerful fixed-top bg-dark">
+            <a class="navbar-brand disabled" href="#">
+                私のレシピ
+            </a>
+        </nav>
+    </header>
+
+    <!-- ** Body ** -->
+    <main role="main">
+        @RenderBody()
+    </main>
+
+    <!-- ** Footer ** -->
+    <footer class="container">
+        <p>&copy; 2019-2019 HRamo - Centennial College - COMP229_006.</p>
+    </footer>
+</body>
+</html>

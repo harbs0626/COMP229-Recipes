@@ -18,7 +18,7 @@ namespace Recipes.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Recipes.Models.RecipeForm", b =>
+            modelBuilder.Entity("Recipes.Models.Recipe", b =>
                 {
                     b.Property<int>("RecipeId")
                         .ValueGeneratedOnAdd()
@@ -36,11 +36,9 @@ namespace Recipes.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<string>("NumberOfCalories")
-                        .IsRequired();
+                    b.Property<int>("NumberOfCalories");
 
-                    b.Property<string>("NumberOfServings")
-                        .IsRequired();
+                    b.Property<int>("NumberOfServings");
 
                     b.Property<string>("PreparationTime")
                         .IsRequired();
