@@ -30,8 +30,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe1.jpg"
                     },
@@ -46,8 +46,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe2.jpg"
                     },
@@ -62,8 +62,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe3.jpg"
                     },
@@ -78,8 +78,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe4.jpg"
                     },
@@ -94,8 +94,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe5.jpg"
                     },
@@ -110,8 +110,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe6.jpg"
                     },
@@ -126,8 +126,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe7.jpg"
                     },
@@ -142,8 +142,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe8.jpg"
                     },
@@ -158,8 +158,8 @@ namespace Recipes.Models
                         Suggestions = "--SUGGESTIONS--",
                         NumberOfServings = 3,
                         NumberOfCalories = 132,
-                        Review = "--REVIEW--",
-                        Rating = 5,
+                        Review = null,
+                        RecipeRating = "0",
                         Source = "--URL--",
                         RecipeImage = "recipe9.jpg"
                     }

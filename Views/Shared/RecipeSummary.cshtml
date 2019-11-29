@@ -5,7 +5,11 @@
         @Html.ActionLink("Recipe", "ViewRecipe", "Home", new { id = Model.RecipeId }, null)
     </div>
     <div class="col-md-6">
-        @Html.ActionLink("Review", "ReviewRecipe", "Home", new { id = Model.RecipeId }, null)
+        <a asp-action="ReviewRecipe" asp-route-recipeId="@Model.RecipeId" 
+           asp-route-recipeName="@Model.Name" asp-controller="Home" 
+           style="width:100%;margin-bottom:15px">
+            Review
+        </a>
     </div>
 </div>
 

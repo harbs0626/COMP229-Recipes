@@ -1,51 +1,56 @@
-﻿@{
+﻿@model Recipe
+
+@{
     Layout = "_MyWebLayout";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <h1>Review Recipe</h1>
+    <form class="needs-validation row" asp-action="ReviewRecipe" method="post">
+        <input type="hidden" asp-for="Name" />
+
+        <div class="col-md-12">
+            <h1>@ViewBag.Title for @Model.Name</h1>
+            <hr />
+        </div>
+
+        <div class="col-md-12">
+            <label for="review">Enter your review</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
+                </div>
+                <textArea type="text" class="form-control" asp-for="Review" 
+                          placeholder="-----" rows="5"></textArea>
+            </div>
+        </div>
+
+        <div class="col-md-4" style="text-align:left;margin-top:10px">
+            <label for="rating">Select your rating</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
+                </div>
+                <select asp-for="RecipeRating" class="form-control">
+                    <option value="0">-----</option>
+                    <option value="1">1 star</option>
+                    <option value="2">2 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="5">5 stars</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">&nbsp;</div>
+        <div class="col-md-4">&nbsp;</div>
+
         <hr />
-    </div>
-</div>
-<div class="row" style="text-align:left">
-    <div class="col-md-12">
-        <label for="review">Enter your review</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
-            </div>
-            <textArea type="text" class="form-control" for="Review" placeholder="-----" rows="10"></textArea>
+        <div class="col-md-3">&nbsp;</div>
+        <div class="col-md-3" style="margin:30px 0px 0px 10px">
+            <button class="btn btn-primary btn-lg btn-block" type="submit" btn="submit">Submit Review</button>
         </div>
-    </div>
-</div>
-<div class="row" style="text-align:left;margin-top:10px">
-    <div class="col-md-4">
-        <label for="rating">Select your rating</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text"><i class="fa fa-arrow-circle-right"></i></span>
-            </div>
-            <select class="form-control" id="rating">
-                <option value="0">-----</option>
-                <option value="1">1 star</option>
-                <option value="2">2 stars</option>
-                <option value="3">3 stars</option>
-                <option value="4">4 stars</option>
-                <option value="5">5 stars</option>
-            </select>
+        <div class="col-md-3" style="margin:30px 0px 0px 10px">
+            <a asp-action="RecipeList" class="btn btn-secondary btn-lg btn-block">
+                <span style="color:#ffffff">Cancel</span>
+            </a>
         </div>
-    </div>
-</div>
-<hr />
-<div class="row" style="text-align:center;margin-top:10px">
-    <div class="col-md-12">
-        <script>
-            function NotAvailable() {
-                alert('This function is not yet available.');
-            }
-        </script>
-        <a class="btn btn-success" style="color:#ffffff !important" onclick ="NotAvailable()">Submit Review</a>
-        <a asp-action="RecipeList" class="btn btn-secondary" style="color:#ffffff !important">Back to Recipe List</a>
-    </div>
-</div>
+        <div class="col-md-3">&nbsp;</div>
+    </form>

@@ -14,7 +14,9 @@ namespace Recipes.Models
 
         Recipe DeleteRecipe(int recipeId);
 
-        void ImageRecipe(string imageName);
+        void ImageRecipe(string imageFileName);
+
+        void SaveReview(int recipeId, Recipe recipe);
 
     }
 }

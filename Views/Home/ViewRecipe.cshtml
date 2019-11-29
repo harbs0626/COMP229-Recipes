@@ -45,6 +45,46 @@
                 <tr><td style="width:250px">Number of Servings:&nbsp;</td><td>@rf.NumberOfServings</td></tr>
                 <tr><td>Number of Calories:&nbsp;</td><td>@rf.NumberOfCalories</td></tr>
             </table>
+
+            bool hasReview = rf.Review == null || rf.Review == "" ? false : true;
+
+            if (hasReview)
+            {
+                <table class="table table-bordered">
+                    <tr>
+                        <td>Review(s)</td>
+                        <td>Rating(s)</td>
+                    </tr>
+                    @{
+                        string[] myReview = rf.Review.Split('|');
+                        string[] myRating = rf.RecipeRating.Split('|');
+
+                        for(int i = 1; i < myReview.Length; i++)
+                        {
+                            if (i != 0)
+                            {
+                                <tr>
+                                    <td>
+                                        @{ 
+                                            string _review = myReview[i];
+                                        }
+                                        @_review
+                                    </td>
+                                    <td>
+                                        @{
+                                            int rating = int.Parse(myRating[i]);
+                                            for(int x = 0; x < rating; x++)
+                                            {
+                                                <i class="fa fa-star" style="color:gold"></i>
+                                            }
+                                        }
+                                    </td>
+                                </tr> 
+                            }
+                        }
+                    }
+                </table>
+            }
         }
     </div>
 </div>

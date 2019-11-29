@@ -23,7 +23,7 @@ namespace Recipes.Migrations
                     NumberOfServings = table.Column<int>(nullable: false),
                     NumberOfCalories = table.Column<int>(nullable: false),
                     Review = table.Column<string>(nullable: true),
-                    Rating = table.Column<int>(nullable: false),
+                    RecipeRating = table.Column<string>(nullable: true),
                     RecipeImage = table.Column<string>(nullable: true),
                     Source = table.Column<string>(nullable: true)
                 },

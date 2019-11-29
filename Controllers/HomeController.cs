@@ -130,10 +130,21 @@ namespace Recipes.Controllers
             //return View(RecipeRepository.FormFields.Where(p => p.RecipeId == id));
         }
 
-        public ViewResult ReviewRecipe()
+        public ViewResult ReviewRecipe(int recipeId)
         {
             @ViewBag.Title = "Review Recipe";
-            return View();
+            return View(this.recipeRepository.MyRecipes
+                .FirstOrDefault(r => r.RecipeId == recipeId));
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public IActionResult ReviewRecipe(int recipeId, Recipe recipe)
+        {
+            this.recipeRepository.SaveReview(recipeId, recipe);
+            TempData["returnMessage"] = $"{recipe.Name} was reviewed!";
+            return RedirectToAction("RecipeList");
+        }
+
     }
 }

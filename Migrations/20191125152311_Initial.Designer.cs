@@ -9,7 +9,7 @@ using Recipes.Models;
 namespace Recipes.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191120161659_Initial")]
+    [Migration("20191125152311_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,12 +45,12 @@ namespace Recipes.Migrations
                     b.Property<string>("PreparationTime")
                         .IsRequired();
 
-                    b.Property<int>("Rating");
-
                     b.Property<string>("ReadyIn")
                         .IsRequired();
 
                     b.Property<string>("RecipeImage");
+
+                    b.Property<string>("RecipeRating");
 
                     b.Property<string>("Review");
 

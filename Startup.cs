@@ -67,6 +67,10 @@ namespace Recipes
 
                 routes.MapRoute(
                     name: null,
+                    template: "{controller}/{action}/{recipeId}/{recipeName}");
+
+                routes.MapRoute(
+                    name: null,
                     template: "{controller}/{action}/{id?}");
             });
 

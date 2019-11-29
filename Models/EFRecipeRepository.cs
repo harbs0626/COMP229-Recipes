@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using System.Runtime.InteropServices;
 
 namespace Recipes.Models
 {
@@ -11,7 +14,7 @@ namespace Recipes.Models
     {
         private ApplicationDbContext context;
         private IHostingEnvironment host;
-        
+
         public EFRecipeRepository(ApplicationDbContext ctx, IHostingEnvironment host)
         {
             this.context = ctx;
@@ -24,6 +27,7 @@ namespace Recipes.Models
         {
             if (recipe.RecipeId == 0)
             {
+                recipe.RecipeImage = recipe.RecipeImage;
                 context.MyRecipes.Add(recipe);
 
                 // ** Upload image to folder
@@ -69,10 +73,29 @@ namespace Recipes.Models
             return recipeEntry;
         }
 
-        public void ImageRecipe(string imageName)
+        public void ImageRecipe(string imageFileName)
         {
-            var imageUpload = this.host.WebRootPath + "\\uploads\\" + Guid.NewGuid().ToString() + "_" + imageName;
-            System.IO.File.Create(imageUpload);
+            var srceFile = Environment.ExpandEnvironmentVariables("%USERPROFILE%\\Downloads\\" + imageFileName);
+            if (File.Exists(srceFile))
+            {
+                var destFile = this.host.WebRootPath + "\\uploads\\" + imageFileName;
+                File.Copy(srceFile, destFile, true);
+            }
+        }
+
+        public void SaveReview(int recipeId, Recipe recipe)
+        {
+            if (recipeId == 0) { }
+            else
+            {
+                Recipe recipeEntry = context.MyRecipes
+                    .FirstOrDefault(r => r.RecipeId == recipeId);
+
+                recipeEntry.Review = recipeEntry.Review + "|" + recipe.Review;
+                recipeEntry.RecipeRating = recipeEntry.RecipeRating + "|" + recipe.RecipeRating;
+            }
+
+            context.SaveChanges();
         }
     }
 }

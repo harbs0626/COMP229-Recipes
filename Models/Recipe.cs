@@ -40,7 +40,7 @@ namespace Recipes.Models
 
         public string Review { get; set; }
 
-        public int Rating { get; set; }
+        public string RecipeRating { get; set; }
 
         public string RecipeImage { get; set; }
 

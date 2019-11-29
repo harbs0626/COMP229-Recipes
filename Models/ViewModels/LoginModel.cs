@@ -8,10 +8,10 @@ namespace Recipes.Models.ViewModels
 {
     public class LoginModel
     {
-        [Required]
+        [Required(ErrorMessage = "Please enter Username")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter Password")]
         [UIHint("password")]
         public string Password { get; set; }
 

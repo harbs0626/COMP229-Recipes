@@ -43,12 +43,12 @@ namespace Recipes.Migrations
                     b.Property<string>("PreparationTime")
                         .IsRequired();
 
-                    b.Property<int>("Rating");
-
                     b.Property<string>("ReadyIn")
                         .IsRequired();
 
                     b.Property<string>("RecipeImage");
+
+                    b.Property<string>("RecipeRating");
 
                     b.Property<string>("Review");
 
