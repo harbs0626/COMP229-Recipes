@@ -27,7 +27,6 @@ namespace Recipes.Models
         {
             if (recipe.RecipeId == 0)
             {
-                recipe.RecipeImage = recipe.RecipeImage;
                 context.MyRecipes.Add(recipe);
 
                 // ** Upload image to folder
